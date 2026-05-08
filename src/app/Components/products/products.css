@@ -1,0 +1,14 @@
+.out-of-stock {
+  opacity: 0.4;
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  border-color: #0d6efd;
+}
