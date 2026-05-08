@@ -14,7 +14,7 @@ export class Products {
   products: Iproduct[]
   totalOrderPrice: number = 0;
   SelectedCatId: number = 0;
-  searchQuery: string = ''; // 1. تعريف المتغير لاستخدامه مع ngModel
+  searchQuery: string = '';
   categories: Icategory[];
 
   constructor() {
@@ -105,13 +105,10 @@ export class Products {
     this.totalOrderPrice += parseInt(count) * price;
   }
 
-  // 2. الـ Getter اللي بيعمل الفلترة بناءً على القسم وبناءً على كلمة البحث
   get filteredProducts() {
     return this.products.filter(prd => {
-      // شرط القسم (يعرض الكل لو 0)
       const matchCategory = (this.SelectedCatId == 0 || prd.catId == this.SelectedCatId);
       
-      // شرط البحث (يشوف لو الاسم يحتوي على الحروف المكتوبة)
       const matchSearch = prd.name.toLowerCase().includes(this.searchQuery.toLowerCase());
 
       return matchCategory && matchSearch;
