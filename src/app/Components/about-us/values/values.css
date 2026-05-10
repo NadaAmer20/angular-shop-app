@@ -1,0 +1,49 @@
+.values-content {
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  animation: fadeIn 0.5s ease-out;
+}
+
+h2 {
+  color: #764ba2;
+  margin-bottom: 30px;
+}
+
+.values-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.values-list li {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.values-list .icon {
+  font-size: 2rem;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.values-list h3 {
+  margin: 0 0 5px 0;
+  color: #2d3436;
+}
+
+.values-list p {
+  margin: 0;
+  color: #636e72;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

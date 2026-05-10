@@ -1,0 +1,31 @@
+<div class="details-container">
+  @if (product) {
+    <div class="product-card">
+      <div class="product-image">
+        <img [src]="product.imgUrl" [alt]="product.name">
+      </div>
+      <div class="product-info">
+        <span class="badge">Premium Quality</span>
+        <h1>{{product.name}}</h1>
+        <p class="price">{{product.price}} EGP</p>
+        <p class="description">
+          Experience the best in technology with the {{product.name}}. 
+          This product is designed to provide high performance and reliability for your daily needs.
+        </p>
+        <div class="stock-info">
+          Availability: <span [class.text-danger]="product.quantity === 0">{{product.quantity > 0 ? 'In Stock' : 'Out of Stock'}}</span>
+        </div>
+        <div class="actions">
+          <button class="add-btn" [disabled]="product.quantity === 0">Add to Cart</button>
+          <button class="back-btn" (click)="goBack()">Back to Products</button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="alert alert-danger text-center">
+      <h3>Product Not Found</h3>
+      <p>Sorry, we couldn't find the product you're looking for.</p>
+      <button class="btn btn-primary" (click)="goBack()">Back to Shop</button>
+    </div>
+  }
+</div>

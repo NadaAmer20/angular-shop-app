@@ -1,5 +1,15 @@
-<nav class="navbar navbar-dark bg-primary px-3 shadow-sm">
+<header class="main-header">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="#">My Simple Store</a>
+    <div class="logo">
+      <a routerLink="/home">Premium<span>Shop</span></a>
+    </div>
+    <nav class="nav-links">
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/about" routerLinkActive="active">About Us</a>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-btn">🛒</button>
+    </div>
   </div>
-</nav>
+</header>

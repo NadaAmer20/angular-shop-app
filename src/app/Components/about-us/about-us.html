@@ -1,0 +1,36 @@
+<div class="about-container">
+  <section class="about-hero">
+    <h1>Our Story</h1>
+    <p>We are dedicated to providing the best shopping experience with a focus on quality, reliability, and customer service.</p>
+  </section>
+
+  <nav class="about-nav">
+    <a routerLink="vision" routerLinkActive="active">Our Vision</a>
+    <a routerLink="values" routerLinkActive="active">Our Values</a>
+  </nav>
+
+  <div class="nested-content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <section class="team-section">
+    <h2>Meet Our Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-photo">👤</div>
+        <h3>John Doe</h3>
+        <p>Founder & CEO</p>
+      </div>
+      <div class="team-member">
+        <div class="member-photo">👤</div>
+        <h3>Jane Smith</h3>
+        <p>Head of Design</p>
+      </div>
+      <div class="team-member">
+        <div class="member-photo">👤</div>
+        <h3>Mike Johnson</h3>
+        <p>Technical Lead</p>
+      </div>
+    </div>
+  </section>
+</div>
