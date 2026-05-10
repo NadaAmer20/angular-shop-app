@@ -1,5 +1,5 @@
 <div class="container mt-4">
-
+  
   <div class="row mb-4 bg-light p-3 border rounded">
     <div class="col-md-12 mb-2">
       <label class="fw-bold">ابحث عن منتج:</label>
@@ -7,46 +7,34 @@
     </div>
   </div>
 
-
   <div class="row">
-    @for (prd of filteredProducts; track prd.id) {
-    <div class="col-md-4 mb-4">
-
+    <div class="col-md-4 mb-4" *ngFor="let prd of filteredProducts" >
+      
       <div class="card h-100 shadow-sm" [ngClass]="{'out-of-stock': prd.quantity == 0}">
-
-        <img [src]="prd.imgUrl" class="card-img-top p-2" style="height: 200px; object-fit: contain; cursor: pointer;"
-          (click)="goToDetails(prd.id)">
-
+        
+        <img [src]="prd.imgUrl" class="card-img-top p-2" style="height: 200px; object-fit: contain;" (click)="goToDetails(prd.id)">
+        
         <div class="card-body text-center">
           <h5 class="card-title">{{prd.name}}</h5>
-
+          
           <p class="fw-bold" [ngStyle]="{'color': prd.price > 40000 ? 'red' : 'green'}">
             السعر: {{prd.price}} جنيه
           </p>
 
           <p class="text-muted">الكمية المتاحة: {{prd.quantity}}</p>
-
+          
           <input type="number" #countInp class="form-control mb-2 text-center" value="1">
-
-          <div class="d-flex gap-2">
-            <button class="btn btn-primary flex-grow-1" [disabled]="prd.quantity == 0"
-              (click)="buy(countInp.value, prd.price)">
-              إضافة للسلة
-            </button>
-            <button class="btn btn-outline-info" (click)="goToDetails(prd.id)">
-              تفاصيل
-            </button>
-          </div>
+          
+          <button class="btn btn-primary w-100" 
+                  [disabled]="prd.quantity == 0"
+                  (click)="buy(countInp.value, prd.price)">
+            إضافة للسلة
+          </button>
         </div>
 
       </div>
     </div>
-    } @empty {
-    <div class="col-12 text-center">
-      <p class="alert alert-warning">لا توجد منتجات في هذا القسم حالياً.</p>
-    </div>
-    }
   </div>
 
 </div>
-<h3>{{num | square:3 }}</h3>
+
