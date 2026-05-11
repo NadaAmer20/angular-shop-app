@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 import { Icategory } from '../Models/icategory';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private categories: Icategory[];
+  private apiUrl = `${environment.apiUrl}/category-list`;
 
-  constructor() {
-    this.categories = [
-      { id: 0, name: 'All Categories' },
-      { id: 1, name: 'Laptops' },
-      { id: 2, name: 'Smartphones' },
-      { id: 3, name: 'Accessories' },
-      { id: 4, name: 'Monitors' }
-    ];
+  constructor(private http: HttpClient) { }
+
+  getCategoryNames(): Observable<string[]> {
+    return this.http.get<string[]>(this.apiUrl);
   }
 
-  getAllCategories(): Icategory[] {
-    return this.categories;
-  }
-
-  getCategoryById(id: number): Icategory | undefined {
-    return this.categories.find(c => c.id === id);
+  getAllCategories(): Observable<Icategory[]> {
+    return this.getCategoryNames().pipe(
+      map(names => {
+        const categories = names.map((name, index) => ({
+          id: index + 1,
+          name: name
+        }));
+        return [{ id: 0, name: 'All Categories' }, ...categories];
+      })
+    );
   }
 }

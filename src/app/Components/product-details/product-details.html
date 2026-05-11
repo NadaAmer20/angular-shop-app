@@ -1,5 +1,12 @@
 <div class="details-container">
-  @if (product) {
+  @if (isLoading) {
+    <div class="text-center mt-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">جاري تحميل المنتج...</p>
+    </div>
+  } @else if (product) {
     <div class="product-card">
       <div class="product-image">
         <img [src]="product.imgUrl" [alt]="product.name">
@@ -16,16 +23,22 @@
           Availability: <span [class.text-danger]="product.quantity === 0">{{product.quantity > 0 ? 'In Stock' : 'Out of Stock'}}</span>
         </div>
         <div class="actions">
+          <button class="nav-btn" (click)="goToPrevious()" [disabled]="isFirst()">
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
           <button class="add-btn" [disabled]="product.quantity === 0">Add to Cart</button>
+          <button class="nav-btn" (click)="goToNext()" [disabled]="isLast()">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
           <button class="back-btn" (click)="goBack()">Back to Products</button>
         </div>
       </div>
     </div>
   } @else {
-    <div class="alert alert-danger text-center">
-      <h3>Product Not Found</h3>
-      <p>Sorry, we couldn't find the product you're looking for.</p>
-      <button class="btn btn-primary" (click)="goBack()">Back to Shop</button>
+    <div class="alert alert-danger text-center mt-5">
+      <h3>المنتج غير موجود</h3>
+      <p>عذراً، لم نتمكن من العثور على المنتج الذي تبحث عنه.</p>
+      <button class="btn btn-primary" (click)="goBack()">العودة للمتجر</button>
     </div>
   }
 </div>

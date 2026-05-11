@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Icategory } from '../../Models/icategory';
@@ -12,14 +12,23 @@ import { CategoryService } from '../../Services/category.service';
   templateUrl: './order.html',
   styleUrl: './order.css'
 })
-export class Order implements AfterViewInit {
-  categories: Icategory[];
+export class Order implements AfterViewInit, OnInit {
+  categories: Icategory[] = [];
   selectedCatId: number = 0;
   totalOrderPrice: number = 0;
   @ViewChild('userNameInp') myInp!: ElementRef;
   @ViewChild(ProductsComponent) prdComponentObj!: ProductsComponent;
-  constructor(private catService: CategoryService) {
-    this.categories = this.catService.getAllCategories();
+  
+  constructor(private catService: CategoryService, private cdr: ChangeDetectorRef) { }
+
+  ngOnInit(): void {
+    this.catService.getAllCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error('Error fetching categories', err)
+    });
   }
   ngAfterViewInit(): void {
     this.myInp.nativeElement.value = "nada";

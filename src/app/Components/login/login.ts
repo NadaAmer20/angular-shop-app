@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { UserAuthService } from '../../Services/user-auth';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
-  templateUrl: './header.html',
-  styleUrl: './header.css',
+  imports: [CommonModule],
+  templateUrl: './login.html',
+  styleUrl: './login.css',
 })
-export class HeaderComponent implements OnInit {
+export class LoginComponent implements OnInit {
   isLogged: boolean = false;
 
   constructor(private authService: UserAuthService) {}
@@ -21,7 +20,13 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  login() {
+    this.authService.login('admin@test.com', '123456');
+    console.log('User Logged In');
+  }
+
   logout() {
     this.authService.logout();
+    console.log('User Logged Out');
   }
 }

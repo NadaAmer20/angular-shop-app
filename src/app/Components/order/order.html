@@ -1,13 +1,4 @@
 <div class="container mt-4">
-    <div class="row mb-4 bg-light p-3 border rounded shadow-sm">
-        <div class="col-md-6 offset-md-3">
-            <label class="fw-bold mb-2">اختار القسم:</label>
-            <select class="form-select border-primary" [(ngModel)]="selectedCatId">
-                <option *ngFor="let cat of categories" [ngValue]="cat.id">{{cat.name}}</option>
-            </select>
-        </div>
-    </div>
-
     <hr>
 
     <app-products [childSelectedCatId]="selectedCatId" (onTotalPriceChanged)="updateTotalPrice($event)">
