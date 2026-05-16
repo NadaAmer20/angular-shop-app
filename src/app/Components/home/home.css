@@ -12,7 +12,7 @@
   color: white;
   border-radius: 20px;
   margin-bottom: 50px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .hero-section h1 {
@@ -41,7 +41,7 @@
 
 .cta-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .features-grid {
@@ -55,7 +55,7 @@
   background: white;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
 }
 
@@ -77,4 +77,75 @@
 .feature-card p {
   color: #666;
   line-height: 1.6;
+}
+
+.counter-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
+}
+
+.counter-display h3 {
+  margin: 0 0 15px 0;
+  font-weight: 300;
+}
+
+.counter-display span {
+  font-weight: 700;
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+.counter-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-plus {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-minus {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-reset {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-plus:hover {
+  background-color: #218838;
+}
+
+.btn-minus:hover {
+  background-color: #c82333;
+}
+
+.btn-reset:hover {
+  background-color: #5a6268;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
 }

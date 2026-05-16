@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit, OnChanges {
   products: Iproduct[] = [];
   categories: Icategory[] = [];
-  
+
   @Input() childSelectedCatId: number = 0;
   @Output() onTotalPriceChanged = new EventEmitter<number>();
 
@@ -54,7 +54,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   loadProducts(): void {
     const catId = Number(this.childSelectedCatId);
     this.isLoading = true;
-    
+
     this.prdService.getProductsByCategoryId(catId).subscribe({
       next: (data) => {
         this.products = data;
@@ -71,7 +71,7 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   get filteredProducts() {
     if (!this.searchQuery) return this.products;
-    return this.products.filter(p => 
+    return this.products.filter(p =>
       p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
@@ -85,5 +85,21 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   goToDetails(id: number) {
     this.router.navigate(['/product', id]);
+  }
+
+  editProduct(id: number) {
+    this.router.navigate(['/edit-product', id]);
+  }
+
+  deleteProduct(id: number) {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.prdService.deleteProduct(id).subscribe({
+        next: () => {
+          alert('Product deleted successfully!');
+          this.loadProducts();
+        },
+        error: (err) => alert('Failed to delete product')
+      });
+    }
   }
 }

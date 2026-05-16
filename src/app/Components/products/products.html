@@ -41,9 +41,15 @@
 
           <input type="number" #countInp class="form-control mb-2 text-center" value="1">
 
-          <div class="d-flex justify-content-center mt-3">
-            <button class="btn btn-secondary px-4" (click)="goToDetails(prd.id)">
+          <div class="d-flex justify-content-center gap-2 mt-3">
+            <button class="btn btn-secondary btn-sm" (click)="goToDetails(prd.id)">
               التفاصيل
+            </button>
+            <button class="btn btn-warning btn-sm" (click)="editProduct(prd.id)">
+              تعديل
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct(prd.id)">
+              حذف
             </button>
           </div>
         </div>

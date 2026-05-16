@@ -1,0 +1,64 @@
+<div class="add-product-container">
+  <h2>{{ isEditMode ? 'Update Product' : 'Add New Product' }}</h2>
+  
+  <form #prdForm="ngForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" id="name" name="name" [(ngModel)]="newProduct.name" #name="ngModel" class="form-control"
+        placeholder="Enter product name" required minlength="3">
+      <div [hidden]="name.valid || name.untouched" class="error-msg">
+        <span *ngIf="name.errors?.['required']">Name is required.</span>
+        <span *ngIf="name.errors?.['minlength']">Minimum 3 characters.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" id="price" name="price" [(ngModel)]="newProduct.price" #price="ngModel" class="form-control"
+        placeholder="0.00" required min="1">
+      <div [hidden]="price.valid || price.untouched" class="error-msg">
+        <span *ngIf="price.errors?.['required']">Price is required.</span>
+        <span *ngIf="price.errors?.['min']">Price must be greater than 0.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" name="quantity" [(ngModel)]="newProduct.quantity" #quantity="ngModel"
+        class="form-control" placeholder="0" required>
+      <div [hidden]="quantity.valid || quantity.untouched" class="error-msg">
+        <span *ngIf="quantity.errors?.['required']">Quantity is required.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imgFile">Product Image</label>
+      <!-- الصورة اختيارية في التعديل إذا كانت موجودة أصلاً -->
+      <input type="file" id="imgFile" (change)="onFileSelected($event)" class="form-control" accept="image/*" [required]="!isEditMode && !imagePreview">
+      
+      <div class="image-preview mt-2" *ngIf="imagePreview">
+        <img [src]="imagePreview" alt="Preview" style="max-height: 150px; border-radius: 8px;">
+      </div>
+      
+      <div *ngIf="!newProduct.imgUrl && prdForm.submitted" class="error-msg">
+        <span>Please select an image.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="catId">Category</label>
+      <select id="catId" name="catId" [(ngModel)]="newProduct.catId" #catId="ngModel" class="form-select" required>
+        <option [ngValue]="0" disabled>Select Category</option>
+        <option *ngFor="let cat of categories" [ngValue]="cat.id">{{cat.name}}</option>
+      </select>
+      <div [hidden]="catId.valid || catId.untouched" class="error-msg">
+        <span *ngIf="catId.errors?.['required']">Category is required.</span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="prdForm.invalid || (!newProduct.imgUrl && !imagePreview)">
+      {{ isEditMode ? 'Update Product' : 'Add Product' }}
+    </button>
+  </form>
+</div>

@@ -6,11 +6,16 @@
     <nav class="nav-links">
       <a routerLink="/home" routerLinkActive="active">Home</a>
       <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/add-product" routerLinkActive="active">Add Product</a>
       <a routerLink="/about" routerLinkActive="active">About Us</a>
       <a *ngIf="!isLogged" routerLink="/login" routerLinkActive="active">Login</a>
+      <a *ngIf="!isLogged" routerLink="/register" routerLinkActive="active">Register</a>
       <a *ngIf="isLogged" (click)="logout()" style="cursor: pointer;">Logout</a>
     </nav>
     <div class="header-actions">
+      <button class="lang-btn" (click)="toggleLang()">
+        {{ currentLang() === 'en' ? 'العربية' : 'English' }}
+      </button>
       <button class="cart-btn">🛒</button>
     </div>
   </div>

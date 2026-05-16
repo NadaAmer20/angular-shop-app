@@ -3,8 +3,19 @@
     <h1>Welcome to Our Premium Shop</h1>
     <p>Discover the latest trends and exclusive collections tailored just for you.</p>
     <button class="cta-button">Shop Now</button>
+
+    <div class="counter-section mt-4">
+      <div class="counter-display">
+        <h3>Store Shared Counter: <span>{{ count }}</span></h3>
+      </div>
+      <div class="counter-controls">
+        <button (click)="plus()" class="btn btn-plus">+</button>
+        <button (click)="minus()" class="btn btn-minus">-</button>
+        <button (click)="reset()" class="btn btn-reset">Reset</button>
+      </div>
+    </div>
   </div>
-  
+
   <div class="features-grid">
     <div class="feature-card">
       <div class="icon">🚀</div>
